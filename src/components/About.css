@@ -1,0 +1,59 @@
+.bento-grid-about {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto auto;
+  gap: 1.5rem;
+}
+
+.main-about {
+  grid-column: 1 / 3;
+  grid-row: 1 / 3;
+}
+
+.main-about p {
+  color: var(--text-secondary);
+  font-size: 1.15rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.7;
+}
+
+.main-about p:last-child {
+  margin-bottom: 0;
+}
+
+.bento-title {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-primary);
+}
+
+.bento-icon {
+  color: var(--accent-1);
+  margin-bottom: 1rem;
+}
+
+.bento-desc {
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+@media (max-width: 992px) {
+  .bento-grid-about {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .main-about {
+    grid-column: 1 / 3;
+    grid-row: auto;
+  }
+}
+
+@media (max-width: 576px) {
+  .bento-grid-about {
+    grid-template-columns: 1fr;
+  }
+  
+  .main-about {
+    grid-column: 1 / -1;
+  }
+}

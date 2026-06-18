@@ -1,0 +1,10 @@
+/* App specific styles will go here if needed, but mostly relying on index.css */
+.app-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
