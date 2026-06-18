@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Mail } from 'lucide-react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import profilePic from '../assets/profile.jpg';
 import './Hero.css';
 
 const Hero = () => {
@@ -65,7 +66,7 @@ const Hero = () => {
           transition={{ duration: 1, delay: 0.4, type: "spring", stiffness: 100 }}
         >
           <div className="image-glow"></div>
-          <img src="/profile.jpg" alt="Eswar Bharath Marri" className="hero-image" />
+          <img src={profilePic} alt="Eswar Bharath Marri" className="hero-image" />
         </motion.div>
       </div>
     </section>
