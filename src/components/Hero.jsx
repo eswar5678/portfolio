@@ -1,73 +1,124 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { ArrowRight, Mail } from 'lucide-react';
-import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import { useState, useEffect } from 'react';
 import profilePic from '../assets/profile.jpg';
 import './Hero.css';
 
-const Hero = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
+const toRotate = [
+  "Software Support Engineering",
+  "Full-Stack Development",
+  "Technical Operations",
+  "Problem Solving"
+];
+const period = 2000;
 
-  const itemVariants = {
-    hidden: { y: 30, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
-    },
+const Hero = () => {
+  const [typedText, setTypedText] = useState('');
+  const [loopNum, setLoopNum] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [delta, setDelta] = useState(100);
+
+  useEffect(() => {
+    const tick = () => {
+      let i = loopNum % toRotate.length;
+      let fullText = toRotate[i];
+      let updatedText = isDeleting 
+        ? fullText.substring(0, typedText.length - 1) 
+        : fullText.substring(0, typedText.length + 1);
+
+      setTypedText(updatedText);
+
+      if (isDeleting) {
+        setDelta(prevDelta => prevDelta / 1.5);
+      }
+
+      if (!isDeleting && updatedText === fullText) {
+        setIsDeleting(true);
+        setDelta(period);
+      } else if (isDeleting && updatedText === '') {
+        setIsDeleting(false);
+        setLoopNum(loopNum + 1);
+        setDelta(150);
+      }
+    };
+
+    let ticker = setInterval(() => {
+      tick();
+    }, delta);
+
+    return () => { clearInterval(ticker) };
+  }, [typedText, delta, isDeleting, loopNum]);
+
+  const handleScrollToAbout = (e) => {
+    e.preventDefault();
+    const element = document.getElementById('about');
+    if (element) {
+      const offset = 65;
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = element.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
   };
 
   return (
-    <section className="hero-section" id="home">
-      <div className="container hero-container">
-        <motion.div 
-          className="hero-content"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          <motion.div variants={itemVariants} className="hero-greeting">
-            <span className="typing-effect">Hello World, I'm</span>
-          </motion.div>
-          <motion.h1 variants={itemVariants} className="hero-name text-gradient">
-            Eswar Bharath
-          </motion.h1>
-          <motion.h2 variants={itemVariants} className="hero-title">
-            Software Engineer & ECE Specialist
-          </motion.h2>
-          <motion.p variants={itemVariants} className="hero-description">
-            Bridging the gap between robust hardware fundamentals and modern software architectures. 
-            I build highly interactive, high-performance web applications and resolve complex operational challenges.
-          </motion.p>
-          <motion.div variants={itemVariants} className="hero-cta">
-            <a href="#contact" className="btn btn-primary cta-btn">
-              Let's Collaborate <ArrowRight size={18} />
-            </a>
-            <div className="social-links">
-              <a href="mailto:eswarmarri6285@gmail.com" className="social-icon"><Mail size={22} /></a>
-              <a href="https://github.com/eswar5678" target="_blank" rel="noopener noreferrer" className="social-icon"><FaGithub size={22} /></a>
-              <a href="https://www.linkedin.com/in/eswar-marri-266a5a2b5/" target="_blank" rel="noopener noreferrer" className="social-icon"><FaLinkedin size={22} /></a>
-            </div>
-          </motion.div>
-        </motion.div>
-        
-        <motion.div 
-          className="hero-image-wrapper"
-          initial={{ opacity: 0, scale: 0.9, rotate: -5 }}
-          animate={{ opacity: 1, scale: 1, rotate: 0 }}
-          transition={{ duration: 1, delay: 0.4, type: "spring", stiffness: 100 }}
-        >
-          <div className="image-glow"></div>
-          <img src={profilePic} alt="Eswar Bharath Marri" className="hero-image" />
-        </motion.div>
+    <section className="home" id="home">
+      <div className="content">
+        <h2>
+          Hi There,<br /> I'm Eswar <span>Bharath</span>
+        </h2>
+        <p>
+          I am into <span className="typing-text">{typedText}</span>
+        </p>
+        <a href="#about" className="btn" onClick={handleScrollToAbout}>
+          <span>About Me</span>
+          <i className="fas fa-arrow-circle-down"></i>
+        </a>
+        <div className="socials">
+          <ul className="social-icons">
+            <li>
+              <a 
+                className="linkedin" 
+                aria-label="LinkedIn" 
+                href="https://www.linkedin.com/in/eswar-marri-266a5a2b5/" 
+                target="_blank" 
+                rel="noreferrer"
+              >
+                <i className="fab fa-linkedin"></i>
+              </a>
+            </li>
+            <li>
+              <a 
+                className="github" 
+                aria-label="GitHub" 
+                href="https://github.com/eswar5678" 
+                target="_blank" 
+                rel="noreferrer"
+              >
+                <i className="fab fa-github"></i>
+              </a>
+            </li>
+            <li>
+              <a 
+                className="twitter" 
+                aria-label="Email" 
+                href="mailto:eswarmarri6285@gmail.com"
+              >
+                <i className="fas fa-envelope"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div className="image">
+        <img 
+          draggable="false" 
+          className="tilt" 
+          src={profilePic} 
+          alt="Eswar Bharath profile" 
+        />
       </div>
     </section>
   );

@@ -1,118 +1,104 @@
-.education-section {
-  position: relative;
+.education {
+  background: #1e293b;
+  min-height: 80vh;
 }
 
-.edu-timeline-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 2rem 0;
+.education .quote {
+  font-size: 1.5rem;
+  text-align: center;
+  font-family: "Nunito", sans-serif;
+  font-weight: 600;
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
+  font-style: italic;
+  color: var(--text-secondary);
 }
 
-.edu-step {
+.education .box-container {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   gap: 2rem;
-  margin-bottom: 0;
-  position: relative;
 }
 
-.edu-step-indicator {
+.education .box-container .box {
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+  background: #0f172a;
+  transition: 0.3s;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.education .box-container .box:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 25px rgba(13, 148, 136, 0.25);
+  border-color: var(--primary-color);
+}
+
+.education .box-container .box .image {
+  flex: 1 1 20rem;
+  width: 100%;
+  max-width: 250px;
+}
+
+.education .box-container .box img {
+  object-fit: cover;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.education .box-container .box .content {
+  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  position: relative;
-  z-index: 2;
+  padding: 2rem;
+  flex: 1 1 70rem;
+  justify-content: center;
 }
 
-.edu-dot {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: var(--bg-color);
-  border: 3px solid var(--text-secondary);
-  transition: var(--transition);
-  margin-top: 5px;
-}
-
-.edu-line {
-  flex-grow: 1;
-  width: 2px;
-  background: var(--glass-border-hover);
-  margin: 10px 0;
-  min-height: 100px;
-}
-
-.highlight-step .edu-dot {
-  border-color: var(--accent-1);
-  box-shadow: 0 0 20px rgba(0, 240, 255, 0.6);
-  background: var(--accent-1);
-}
-
-.highlight-step .edu-line {
-  background: linear-gradient(to bottom, var(--accent-1), var(--glass-border-hover));
-}
-
-.edu-step-content {
-  flex: 1;
-  padding-bottom: 4rem;
-  padding-top: 2px;
-}
-
-.edu-step:last-child .edu-step-content {
-  padding-bottom: 0;
-}
-
-.edu-step-header {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  margin-bottom: 0.75rem;
-  flex-wrap: wrap;
-}
-
-.edu-year {
-  font-family: 'Space Grotesk', monospace;
-  color: var(--text-secondary);
-  font-size: 1.1rem;
-  font-weight: 500;
-}
-
-.edu-score-badge {
-  background: rgba(138, 43, 226, 0.1);
-  color: #d8b4fe;
-  padding: 0.3rem 0.8rem;
-  border-radius: 4px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  border: 1px solid rgba(138, 43, 226, 0.3);
-  font-family: 'Space Grotesk', monospace;
-}
-
-.edu-title {
-  font-size: 1.5rem;
+.education .box-container .box .content h3 {
+  font-size: 2.3rem;
   color: var(--text-primary);
-  margin-bottom: 0.5rem;
-  line-height: 1.3;
+  font-weight: 600;
+  text-align: left;
 }
 
-.edu-school {
-  font-size: 1.2rem;
-  color: var(--accent-1);
-  font-weight: 400;
-  margin-bottom: 0.5rem;
-}
-
-.edu-board-text {
+.education .box-container .box .content p {
+  font-size: 1.6rem;
+  text-align: left;
+  margin-top: 0.8rem;
   color: var(--text-secondary);
-  font-size: 0.95rem;
-  opacity: 0.7;
 }
 
-@media (max-width: 576px) {
-  .edu-step {
-    gap: 1rem;
+.education .box-container .box .content h4 {
+  font-size: 1.8rem;
+  color: var(--accent-sky);
+  text-align: left;
+  margin-top: 1rem;
+  font-family: "Nunito", sans-serif;
+  font-weight: 700;
+}
+
+@media screen and (max-width: 768px) {
+  .education .box-container .box {
+    flex-direction: column;
+    width: 100%;
   }
-  
-  .edu-step-content {
-    padding-bottom: 3rem;
+  .education .box-container .box .image {
+    width: 100%;
+    max-width: 100%;
+    height: 20rem;
+  }
+  .education .box-container .box .content {
+    padding: 1.5rem;
+    flex: 1 1 auto;
   }
 }

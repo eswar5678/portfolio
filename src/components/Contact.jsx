@@ -1,91 +1,99 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Mail, MapPin, Phone } from 'lucide-react';
+import { useState } from 'react';
+import contactImg from '../assets/contact_illustration.png';
 import './Contact.css';
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: ''
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Contact form submitted:", formData);
+    alert(`Thank you, ${formData.name}! Your message has been sent successfully.`);
+    setFormData({
+      name: '',
+      email: '',
+      phone: '',
+      message: ''
+    });
+  };
+
   return (
-    <section id="contact" className="contact-section">
+    <section className="contact" id="contact">
+      <h2 className="heading">
+        <i className="fas fa-headset"></i> Get in <span>Touch</span>
+      </h2>
+
       <div className="container">
-        <motion.h2 
-          className="section-title"
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-        >
-          Initiate Contact
-        </motion.h2>
-        
-        <motion.div 
-          className="contact-content bento-card"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.7 }}
-        >
-          <div className="contact-info">
-            <h3 className="contact-heading">Transmission Details</h3>
-            <p className="contact-desc">
-              I am actively seeking opportunities in software engineering, technical support, or backend development. 
-              My inbox is always open. Whether you have a question or just want to say hi, I'll try my best to get back to you!
-            </p>
-            <div className="info-items">
-              <div className="info-item">
-                <div className="info-icon">
-                  <Mail size={20} />
-                </div>
-                <div className="info-text">
-                  <span className="info-label">Email Network</span>
-                  <a href="mailto:eswarmarri6285@gmail.com" className="info-value">eswarmarri6285@gmail.com</a>
-                </div>
+        <div className="contact-content">
+          <div className="image-box">
+            <img draggable="false" src={contactImg} alt="Contact Illustration" />
+          </div>
+          
+          <form id="contact-form" onSubmit={handleSubmit}>
+            <div className="form-group">
+              <div className="field">
+                <input 
+                  type="text" 
+                  name="name" 
+                  placeholder="Name" 
+                  value={formData.name}
+                  onChange={handleChange}
+                  required 
+                />
+                <i className="fas fa-user"></i>
               </div>
-              <div className="info-item">
-                <div className="info-icon">
-                  <Phone size={20} />
-                </div>
-                <div className="info-text">
-                  <span className="info-label">Comm Channel</span>
-                  <a href="tel:+916281450770" className="info-value">+91 6281450770</a>
-                </div>
+              <div className="field">
+                <input 
+                  type="email" 
+                  name="email" 
+                  placeholder="Email" 
+                  value={formData.email}
+                  onChange={handleChange}
+                  required 
+                />
+                <i className="fas fa-envelope"></i>
               </div>
-              <div className="info-item">
-                <div className="info-icon">
-                  <MapPin size={20} />
-                </div>
-                <div className="info-text">
-                  <span className="info-label">Coordinates</span>
-                  <span className="info-value">West Godavari, Andhra Pradesh</span>
-                </div>
+              <div className="field">
+                <input 
+                  type="text" 
+                  name="phone" 
+                  placeholder="Phone" 
+                  value={formData.phone}
+                  onChange={handleChange}
+                />
+                <i className="fas fa-phone-alt"></i>
+              </div>
+              <div className="message">
+                <textarea 
+                  name="message" 
+                  placeholder="Message" 
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
+                ></textarea>
+                <i className="fas fa-comment-dots"></i>
               </div>
             </div>
-          </div>
-          <div className="contact-form-wrapper">
-            <h3 className="contact-heading">Send a Data Packet</h3>
-            <form className="form" onSubmit={(e) => e.preventDefault()}>
-              <div className="form-group">
-                <label htmlFor="name">Identifier</label>
-                <input type="text" id="name" placeholder="Your Name" className="form-input" />
-              </div>
-              <div className="form-group">
-                <label htmlFor="email">Return Address</label>
-                <input type="email" id="email" placeholder="Your Email" className="form-input" />
-              </div>
-              <div className="form-group">
-                <label htmlFor="message">Payload</label>
-                <textarea id="message" rows="4" placeholder="Your Message" className="form-input"></textarea>
-              </div>
-              <motion.button 
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                type="submit" 
-                className="btn btn-primary submit-btn"
-              >
-                Transmit
-              </motion.button>
-            </form>
-          </div>
-        </motion.div>
+            <div className="button-area">
+              <button type="submit">
+                Submit <i className="fa fa-paper-plane"></i>
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </section>
   );

@@ -1,76 +1,85 @@
-import React from 'react';
-import { motion } from 'framer-motion';
 import './Skills.css';
 
 const Skills = () => {
-  const skillCategories = [
+  const skillsData = [
     {
-      title: "Programming Languages",
-      skills: ["Java", "Python", "C", "JavaScript"]
+      name: "Java",
+      icon: "https://img.icons8.com/color/48/000000/java-coffee-cup-logo--v1.png"
     },
     {
-      title: "Web Development",
-      skills: ["HTML", "CSS", "Node.js", "Socket.io", "React"]
+      name: "Python",
+      icon: "https://img.icons8.com/color/48/000000/python--v1.png"
     },
     {
-      title: "Tools & Platforms",
-      skills: ["Git", "GitHub", "Android Studio", "Render", "Vite"]
+      name: "C Programming",
+      icon: "https://img.icons8.com/color/48/000000/c-programming.png"
     },
     {
-      title: "Engineering & Others",
-      skills: ["Cadence", "Mentor Graphics", "Arduino UNO", "Prompt Engineering", "AI-assisted Development"]
+      name: "JavaScript",
+      icon: "https://img.icons8.com/color/48/000000/javascript--v1.png"
+    },
+    {
+      name: "HTML5",
+      icon: "https://img.icons8.com/color/48/000000/html-5--v1.png"
+    },
+    {
+      name: "CSS3",
+      icon: "https://img.icons8.com/color/48/000000/css3.png"
+    },
+    {
+      name: "ReactJS",
+      icon: "https://img.icons8.com/external-tal-revivo-color-tal-revivo/48/000000/external-react-a-javascript-library-for-building-user-interfaces-logo-color-tal-revivo.png"
+    },
+    {
+      name: "NodeJS",
+      icon: "https://img.icons8.com/color/48/000000/nodejs.png"
+    },
+    {
+      name: "Socket.io",
+      icon: "https://img.icons8.com/color/48/000000/socket-io.png"
+    },
+    {
+      name: "Android Studio",
+      icon: "https://img.icons8.com/fluency/48/000000/android-os.png"
+    },
+    {
+      name: "Git",
+      icon: "https://img.icons8.com/color/48/000000/git.png"
+    },
+    {
+      name: "GitHub",
+      icon: "https://img.icons8.com/glyph-neue/48/ffffff/github.png"
+    },
+    {
+      name: "Arduino",
+      icon: "https://img.icons8.com/color/48/000000/arduino.png"
+    },
+    {
+      name: "Cadence (VLSI)",
+      icon: "https://img.icons8.com/color/48/000000/circuit.png"
+    },
+    {
+      name: "AI & Prompting",
+      icon: "https://img.icons8.com/color/48/000000/artificial-intelligence.png"
     }
   ];
 
-  const containerVariants = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.15,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { duration: 0.5 }
-    },
-  };
-
   return (
-    <section id="skills" className="skills-section">
+    <section className="skills" id="skills">
+      <h2 className="heading">
+        <i className="fas fa-laptop-code"></i> Skills & <span>Abilities</span>
+      </h2>
       <div className="container">
-        <motion.h2 
-          className="section-title"
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-        >
-          Core Arsenal
-        </motion.h2>
-        
-        <motion.div 
-          className="skills-grid"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-        >
-          {skillCategories.map((category, index) => (
-            <motion.div key={index} variants={itemVariants} className="skill-category bento-card">
-              <h3 className="category-title">{category.title}</h3>
-              <div className="skill-tags">
-                {category.skills.map((skill, i) => (
-                  <span key={i} className="skill-tag">{skill}</span>
-                ))}
+        <div className="row" id="skillsContainer">
+          {skillsData.map((skill, index) => (
+            <div className="bar" key={index}>
+              <div className="info">
+                <img src={skill.icon} alt={skill.name} />
+                <span>{skill.name}</span>
               </div>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

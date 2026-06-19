@@ -1,75 +1,53 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import collegeImg from '../assets/college.jpg';
+import intermediateImg from '../assets/intermediate.png';
+import schoolImg from '../assets/school.png';
 import './Education.css';
 
 const Education = () => {
-  const education = [
+  const educationData = [
     {
       institution: "Sri Vasavi Engineering College",
       degree: "B.Tech in Electronics and Communication Engineering",
       duration: "2021 - 2025",
       score: "CGPA: 8.72",
-      board: "",
-      highlight: true
+      image: collegeImg
     },
     {
       institution: "Sri Chaitanya Jr College",
       degree: "Intermediate (MPC)",
       duration: "2019 - 2021",
-      score: "Score: 935",
-      board: "Board of Intermediate Education",
-      highlight: false
+      score: "Score: 935 / 1000",
+      image: intermediateImg
     },
     {
       institution: "Akshra High School",
       degree: "Secondary School Education",
       duration: "2018 - 2019",
       score: "CGPA: 9.7",
-      board: "Board of Secondary School Education",
-      highlight: false
+      image: schoolImg
     }
   ];
 
   return (
-    <section id="education" className="education-section">
-      <div className="container">
-        <motion.h2 
-          className="section-title"
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-        >
-          Academic Pathway
-        </motion.h2>
-        
-        <div className="edu-timeline-container">
-          {education.map((edu, index) => (
-            <motion.div 
-              key={index} 
-              className={`edu-step ${edu.highlight ? 'highlight-step' : ''}`}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: index * 0.2 }}
-            >
-              <div className="edu-step-indicator">
-                <div className="edu-dot"></div>
-                {index !== education.length - 1 && <div className="edu-line"></div>}
-              </div>
-              
-              <div className="edu-step-content">
-                <div className="edu-step-header">
-                  <span className="edu-year">{edu.duration}</span>
-                  <div className="edu-score-badge">{edu.score}</div>
-                </div>
-                <h3 className="edu-title">{edu.degree}</h3>
-                <h4 className="edu-school">{edu.institution}</h4>
-                {edu.board && <p className="edu-board-text">{edu.board}</p>}
-              </div>
-            </motion.div>
-          ))}
-        </div>
+    <section className="education" id="education">
+      <h2 className="heading">
+        <i className="fas fa-graduation-cap"></i> My <span>Education</span>
+      </h2>
+      <p className="quote">Education is not the learning of facts, but the training of the mind to think.</p>
+      
+      <div className="box-container">
+        {educationData.map((edu, index) => (
+          <div className="box" key={index}>
+            <div className="image">
+              <img draggable="false" src={edu.image} alt={edu.institution} />
+            </div>
+            <div className="content">
+              <h3>{edu.degree}</h3>
+              <p>{edu.institution}</p>
+              <h4>{edu.duration} | {edu.score}</h4>
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   );

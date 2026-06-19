@@ -1,4 +1,3 @@
-/* App specific styles will go here if needed, but mostly relying on index.css */
 .app-wrapper {
   min-height: 100vh;
   display: flex;
@@ -8,3 +7,32 @@
 main {
   flex: 1;
 }
+
+/* scroll top starts */
+#scroll-top {
+  position: fixed;
+  top: -140%;
+  right: 2rem;
+  padding: 1rem 1.5rem;
+  font-size: 2rem;
+  background: var(--accent-sky);
+  color: #0f172a;
+  border-radius: 50%;
+  transition: 0.5s ease-in-out;
+  z-index: 1000;
+  text-decoration: none;
+  display: inline-block;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+#scroll-top:hover {
+  background: var(--primary-color);
+  color: #fff;
+  box-shadow: 0 0 15px rgba(13, 148, 136, 0.4);
+}
+
+#scroll-top.active {
+  top: calc(100% - 8rem);
+}
+/* scroll top ends */

@@ -1,72 +1,71 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { ExternalLink, Gamepad2, Cpu } from 'lucide-react';
+import housieImg from '../assets/housie_project.png';
+import vlsiImg from '../assets/vlsi_project.png';
+import ticketGeneratorImg from '../assets/ticket_generator_project.png';
 import './Projects.css';
 
 const Projects = () => {
-  const projects = [
+  const projectsData = [
     {
-      title: "Multiplayer Housie (Tambola)",
-      description: "A real-time multiplayer application with ticket generation, fluid gameplay flow, and instantaneous interaction features. Architected for robust game performance and seamless user experience.",
-      techStack: ["Android Studio", "Java", "WebSockets"],
-      icon: <Gamepad2 size={28} strokeWidth={1.5} />
+      name: "Multiplayer Housie (Tambola)",
+      desc: "A real-time multiplayer Android application with automatic ticket generation, fluid gameplay flow, and instantaneous interaction features. Architected for robust performance and seamless user experience.",
+      image: housieImg,
+      links: {
+        view: "https://play.google.com/apps/internaltest/4701518911648953538",
+        code: "https://github.com/eswar5678/simple_housie"
+      }
     },
     {
-      title: "Power-Efficient High-Speed Gate-Level Full Adder",
-      description: "Engineered a high-speed, low-power full adder circuit optimized for portable electronics and advanced processors, focusing on minimal power draw and maximum efficiency.",
-      techStack: ["Hardware Design", "VLSI"],
-      icon: <Cpu size={28} strokeWidth={1.5} />
+      name: "Power-Efficient High-Speed Full Adder",
+      desc: "Engineered a high-speed, low-power gate-level full adder circuit optimized for portable electronics and advanced processors, focusing on minimal power draw and maximum efficiency.",
+      image: vlsiImg,
+      links: {
+        view: "#",
+        code: "https://github.com/eswar5678"
+      }
+    },
+    {
+      name: "Tambola Ticket Generator",
+      desc: "A client-side web application designed to generate randomized and printable Tambola (Housie) tickets. Features quick grid creation, ticket customization, and seamless game card operations.",
+      image: ticketGeneratorImg,
+      links: {
+        view: "https://eswar5678.github.io/tambola-ticket-generator.com/",
+        code: "https://github.com/eswar5678/tambola-ticket-generator.com"
+      }
     }
   ];
 
   return (
-    <section id="projects" className="projects-section">
-      <div className="container">
-        <motion.h2 
-          className="section-title"
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-        >
-          Selected Works
-        </motion.h2>
-        
-        <div className="projects-grid">
-          {projects.map((project, index) => (
-            <motion.div 
-              key={index} 
-              className="project-card bento-card"
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: index * 0.2 }}
-              whileHover={{ y: -10 }}
-            >
-              <div className="project-header">
-                <div className="project-icon">
-                  {project.icon}
+    <section className="work" id="projects">
+      <h2 className="heading">
+        <i className="fas fa-laptop-code"></i> Projects <span>Made</span>
+      </h2>
+
+      <div className="box-container">
+        {projectsData.map((project, index) => (
+          <div className="box" key={index}>
+            <img draggable="false" src={project.image} alt={project.name} />
+            <div className="content">
+              <div className="tag">
+                <h3>{project.name}</h3>
+              </div>
+              <div className="desc">
+                <p>{project.desc}</p>
+                <div className="btns">
+                  {project.links.view && project.links.view !== '#' && (
+                    <a href={project.links.view} className="btn-link" target="_blank" rel="noreferrer">
+                      <i className="fas fa-eye"></i> View
+                    </a>
+                  )}
+                  {project.links.code && project.links.code !== '#' && (
+                    <a href={project.links.code} className="btn-link" target="_blank" rel="noreferrer">
+                      Code <i className="fas fa-code"></i>
+                    </a>
+                  )}
                 </div>
-                <motion.a 
-                  href="#" 
-                  className="project-link" 
-                  aria-label="View Project"
-                  whileHover={{ scale: 1.2, rotate: 15 }}
-                  whileTap={{ scale: 0.9 }}
-                >
-                  <ExternalLink size={24} />
-                </motion.a>
               </div>
-              <h3 className="project-title">{project.title}</h3>
-              <p className="project-desc">{project.description}</p>
-              <div className="project-tech">
-                {project.techStack.map((tech, i) => (
-                  <span key={i} className="tech-tag">{tech}</span>
-                ))}
-              </div>
-            </motion.div>
-          ))}
-        </div>
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   );
