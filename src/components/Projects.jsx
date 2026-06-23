@@ -1,10 +1,20 @@
 import housieImg from '../assets/housie_project.png';
 import vlsiImg from '../assets/vlsi_project.png';
 import ticketGeneratorImg from '../assets/ticket_generator_project.png';
+import mathVisualizerImg from '../assets/math_visualizer_project.png';
 import './Projects.css';
 
 const Projects = () => {
   const projectsData = [
+    {
+      name: "AetherMath 3D — Mathematical Visualizer",
+      desc: "An interactive, client-side 2D and 3D mathematical expression visualizer. Renders explicit/parametric surfaces and curves in real-time using WebGL/Three.js. Includes an advanced calculus toolbox for partial derivatives, gradients, and double integral volume curtains.",
+      image: mathVisualizerImg,
+      links: {
+        view: "https://eswar5678.github.io/MathsExpressionToVisual/",
+        code: "https://github.com/eswar5678/MathsExpressionToVisual"
+      }
+    },
     {
       name: "Multiplayer Housie (Tambola)",
       desc: "A real-time multiplayer Android application with automatic ticket generation, fluid gameplay flow, and instantaneous interaction features. Architected for robust performance and seamless user experience.",
